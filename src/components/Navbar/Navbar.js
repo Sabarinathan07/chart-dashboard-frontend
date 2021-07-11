@@ -22,7 +22,7 @@ function Navbar() {
 
 	async function logout() {
 		// await axios.get("http://localhost:5000/auth/logout");
-		await axios.get("https://dashboard--backend.herokuapp.com/auth/logut");
+		await axios.get("https://dashboard--backend.herokuapp.com/auth/logout");
 		await getLoggedIn();
 		history.push("/");
 	}
