@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import "./Login.css";
 
@@ -13,6 +13,7 @@ const AdminLogin = () => {
 	const [password, setPassword] = useState("");
 	const { getLoggedIn } = useContext(AuthContext);
 	const history = useHistory();
+	const apiUrl = process.env.REACT_APP_API_URL;
 
 	async function login(e) {
 		e.preventDefault();
@@ -23,8 +24,9 @@ const AdminLogin = () => {
 				password,
 			};
 
+			await axios.post(`${apiUrl}/auth/login`, loginData);
 			// await axios.post("http://localhost:5000/auth/login", loginData);
-			await axios.post("https://dashboard--backend.herokuapp.com/auth/login", loginData);
+			// await axios.post("https://dashboard--backend.herokuapp.com/auth/login", loginData);
 			await getLoggedIn();
 			history.push("/home");
 		} catch (err) {
