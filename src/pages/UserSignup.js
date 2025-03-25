@@ -8,12 +8,13 @@ const UserSignup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordVerify, setPasswordVerify] = useState("");
-
+	const apiUrl = process.env.REACT_APP_API_URL;
 	const { getLoggedIn } = useContext(AuthContext);
 	const history = useHistory();
 
 	async function register(e) {
 		e.preventDefault();
+		console.log(apiUrl);
 
 		try {
 			const registerData = {
@@ -21,9 +22,9 @@ const UserSignup = () => {
 				password,
 				passwordVerify,
 			};
-
+			await axios.post(`${apiUrl}/auth/`, registerData);
 			// await axios.post("http://localhost:5000/auth/", registerData);
-			await axios.post("https://dashboard--backend.herokuapp.com/auth/", registerData);
+			// await axios.post("https://dashboard--backend.herokuapp.com/auth/", registerData);
 			// await axios.post(
 			//   "https://mern-auth-template-tutorial.herokuapp.com/auth/",
 			//   registerData

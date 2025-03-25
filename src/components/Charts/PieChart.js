@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
-import { data, options } from "../Data/Data";
+import { data } from "../Data/Data";
 
 
 

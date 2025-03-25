@@ -10,11 +10,12 @@ const LogoutButton = () => {
 
   const { getLoggedIn } = useContext(AuthContext);
   const history = useHistory();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   async function logout() {
     // await axios.get("http://localhost:5000/auth/logout");
-    
-    await axios.get("https://dashboard--backend.herokuapp.com/auth/login");
+    await axios.get(`${apiUrl}/auth/logout`);
+    // await axios.get("https://dashboard--backend.herokuapp.com/auth/login");
       await getLoggedIn();
       history.push("/");
   }

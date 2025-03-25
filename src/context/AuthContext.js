@@ -1,20 +1,21 @@
+import React, { createContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [loggedIn, setLoggedIn] = useState(undefined);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
-  async function getLoggedIn() {
-    // const loggedInRes = await axios.get("http://localhost:5000/auth/loggedIn");
-    const loggedInRes = await axios.get("https://dashboard--backend.herokuapp.com/auth/loggedIn");
+  console.log(apiUrl, 'aspis');
+  const getLoggedIn = useCallback(async () => {
+    const loggedInRes = await axios.get(`${apiUrl}/auth/loggedIn`);
     setLoggedIn(loggedInRes.data);
-  }
+  }, [apiUrl]); // Add `apiUrl` as a dependency since it's used inside the function
 
   useEffect(() => {
     getLoggedIn();
-  }, []);
+  }, [getLoggedIn]); // Add `getLoggedIn` to the dependency array
 
   return (
     <AuthContext.Provider value={{ loggedIn, getLoggedIn }}>

@@ -1,5 +1,5 @@
 import { data, options } from "../Data/Data";
-import { Line,Chart } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 const LineChart = () => (
     <div className='container'>
